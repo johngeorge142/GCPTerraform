@@ -1,5 +1,7 @@
 # GCP Terraform
 
+This project is a tutorial from https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/gcp-get-started
+
 »Install Terraform
 
 brew tap hashicorp/tap
