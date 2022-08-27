@@ -14,8 +14,7 @@ terraform -help
 
 terraform -help plan
 
-**Build Infrastructure - Terraform GCP Example
-**
+**Build Infrastructure - Terraform GCP Example**
 
 Set up GCP
 
