@@ -45,6 +45,8 @@ cd learn-terraform-gcp
 
 touch main.tf
 
+--------------------
+
 terraform {
   required_providers {
     google = {
@@ -65,6 +67,8 @@ provider "google" {
 resource "google_compute_network" "vpc_network" {
   name = "terraform-network"
 }
+  
+ --------------------
 
 terraform init
   
@@ -75,10 +79,14 @@ terraform validate
 terraform apply
   
 terraform show
+ 
+---------------------------
 
 **Change Infrastructure**
  
 Add the following configuration for a Google compute instance resource to main.tf.
+  
+-------------------------
 
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
@@ -115,6 +123,9 @@ Tip: The below snippet is formatted as a diff to give you context about what in 
    ## ...
  }
 
+  ------------------
+  
+  
 terraform apply
   
 terraform destroy
