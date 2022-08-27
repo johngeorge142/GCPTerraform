@@ -1,4 +1,4 @@
-# GCPTerraform
+# GCP Terraform
 
 »Install Terraform
 
@@ -13,6 +13,9 @@ brew upgrade hashicorp/tap/terraform
 terraform -help
 
 terraform -help plan
+
+**Build Infrastructure - Terraform GCP Example
+**
 
 Set up GCP
 
@@ -74,7 +77,7 @@ terraform apply
   
 terraform show
 
-Change Infrastructure
+**Change Infrastructure**
 
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
@@ -95,7 +98,7 @@ resource "google_compute_instance" "vm_instance" {
 
 terraform apply
   
-Modify configuration
+**Modify configuration**
 
 In addition to creating resources, Terraform can also make changes to those resources.
 
