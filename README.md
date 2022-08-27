@@ -97,6 +97,8 @@ resource "google_compute_instance" "vm_instance" {
   }
 }
 
+----------------------------
+
 terraform apply
   
 **Modify configuration**
