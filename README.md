@@ -77,6 +77,8 @@ terraform apply
 terraform show
 
 **Change Infrastructure**
+ 
+Add the following configuration for a Google compute instance resource to main.tf.
 
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
