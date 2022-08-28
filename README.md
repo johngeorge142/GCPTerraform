@@ -1,24 +1,29 @@
-# GCP Terraform
+# Managing GCP Infrastructure using Terraform
 
-This project is a tutorial from https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/gcp-get-started
+The purpose of this project is to create an entire GCP infrastructure using Terraform. We will create VPC, subnets, network interfaces, and AMI's using GCP.
 
-»Install Terraform
 
-brew tap hashicorp/tap
 
-brew install hashicorp/tap/terraform
+## Installation
 
-brew update
+Install Terraform
 
-brew upgrade hashicorp/tap/terraform
+```bash
+  brew tap hashicorp/tap
+```
+```bash
+  brew install hashicorp/tap/terraform
+```
 
-terraform -help
+```bash
+  brew update
+```
 
-terraform -help plan
+```bash
+  brew upgrade hashicorp/tap/terraform
+```
 
-**Build Infrastructure - Terraform GCP Example**
-
-Set up GCP
+## Setup
 
 After creating your GCP account, create or modify the following resources to enable Terraform to provision your infrastructure:
 
@@ -35,20 +40,34 @@ For the Role, choose "Project -> Editor", then click "Continue".
 Skip granting additional users access, and click "Done".
 After you create your service account, download your service account key.
 
-Select your service account from the list.
-Select the "Keys" tab.
-In the drop down menu, select "Create new key".
-Leave the "Key Type" as JSON.
-Click "Create" to create the key and save the key file to your system.
+1. Select your service account from the list.
+2. Select the "Keys" tab.
+3. In the drop down menu, select "Create new key".
+4. Leave the "Key Type" as JSON.
+5. Click "Create" to create the key and save the key file to your system.
 
+## Write configuration
+
+You will now write your first configuration to create a network.
+
+Create a directory for your configuration.
+```bash
 mkdir learn-terraform-gcp
+```
 
+Change into the directory.
+```bash
 cd learn-terraform-gcp
+```
 
+Create a main.tf file for your configuration.
+```bash
 touch main.tf
+```
 
---------------------
+Open main.tf in your text editor, and paste in the configuration below. Replace <NAME> with the service account key file you created and downloaded and <PROJECT_ID> with your GCP project's ID, and save the file.
 
+```bash
 terraform {
   required_providers {
     google = {
@@ -69,27 +88,38 @@ provider "google" {
 resource "google_compute_network" "vpc_network" {
   name = "terraform-network"
 }
-  
- --------------------
+```
 
+### Initialize the directory
+
+```bash
 terraform init
-  
+```
+
+### Format and validate the configuration
+
+```bash
 terraform fmt
-  
+```
+
+```bash
 terraform validate
-  
+```
+
+## Create infrastructure
+
+```bash
 terraform apply
-  
+```
+
+```bash
 terraform show
- 
----------------------------
+```
+# Change Infrastructure
 
-**Change Infrastructure**
- 
-Add the following configuration for a Google compute instance resource to main.tf.
-  
--------------------------
+## Create a new resource
 
+```bash
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
   machine_type = "f1-micro"
@@ -106,28 +136,55 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 }
+```
 
-----------------------------
-
+```bash
 terraform apply
-  
-**Modify configuration**
+```
 
-In addition to creating resources, Terraform can also make changes to those resources.
+## Modify configuration
 
-Add a tags argument to your vm_instance resource block.
-
-Tip: The below snippet is formatted as a diff to give you context about what in your configuration should change. Add the content in green (exclude the leading + sign).
+```bash
  resource "google_compute_instance" "vm_instance" {
    name         = "terraform-instance"
    machine_type = "f1-micro"
 +  tags         = ["web", "dev"]
    ## ...
  }
+ ```
 
-  ------------------
-  
-  
+ ```bash
 terraform apply
-  
-terraform destroy
+ ```
+
+ ```bash
+ Tip: The below snippet is formatted as a diff to give you context about what in your configuration should change. Replace the content displayed in red with the content displayed in green (exclude the leading + and - signs).
+ ```
+
+ ```bash
+    boot_disk {
+     initialize_params {
+-      image = "debian-cloud/debian-9"
++      image = "cos-cloud/cos-stable"
+     }
+   }
+   ```
+
+   ```bash
+   terraform apply
+   ```
+
+   ## Destroy Infrastructure
+
+  ```bash
+  terraform destroy
+  ```
+## Documentation
+
+[Hashicorp Documentation](https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/aws-get-started)
+
+
+## Authors
+
+- [@johngeorge](https://github.com/johngeorge142/)
+
