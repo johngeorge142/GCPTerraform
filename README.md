@@ -181,7 +181,7 @@ terraform apply
   ```
 ## Documentation
 
-[Hashicorp Documentation](https://learn.hashicorp.com/collections/terraform/gcp-get-started)
+[Hashicorp Documentation](https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/gcp-get-started)
 
 
 ## Authors
